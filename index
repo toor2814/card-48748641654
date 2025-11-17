@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Locations</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Cinzel+Decorative:wght@700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      background-size: 200% 200%;
+      animation: bgMove 10s ease-in-out infinite alternate;
+      min-height: 100vh; /* 👈 height ki jagah min-height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      padding: 20px 0; /* thoda breathing space */
+    }
+
+    /* ===== Splash Screen ===== */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      animation: fadeOut 0.5s ease forwards;
+      animation-delay: 1.2s;
+    }
+
+    #splash h1 {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+    }
+
+    .loader-bar {
+      width: 150px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-bar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: white;
+      animation: loadingBar 1.2s ease-in-out forwards;
+    }
+
+    @keyframes loadingBar {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    #main {
+      opacity: 0;
+      animation: fadeIn 0.8s ease forwards;
+      animation-delay: 1.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    h1.page-title {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+      animation: slideDown 1s ease;
+    }
+
+    h1.page-title::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 3px;
+      background: white;
+      margin: 8px auto 0;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 85%;
+      max-width: 350px;
+      animation: fadeInUp 1.3s ease;
+    }
+
+    a.button {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      padding: 18px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(6px);
+      animation: pulse 3.5s infinite ease-in-out;
+    }
+
+    .event-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .event-time {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      font-weight: 400;
+    }
+
+    a.button:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      border-color: #fff;
+    }
+
+    a.button:active {
+      transform: scale(0.97);
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 15px rgba(255,255,255,0.6);
+      transition: 0.1s;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      letter-spacing: 0.5px;
+      margin-top: auto; /* 👈 Is se footer neeche chala jata hai naturally */
+      padding-bottom: 10px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <h1>Events</h1>
+    <div class="loader-bar"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main">
+    <h1 class="page-title">Event Locations</h1>
+
+    <div class="btn-container">
+      <a href="https://maps.app.goo.gl/chTbj5KddKx5prQAA" class="button">
+        <div class="event-title">Mehndi</div>
+        <div class="event-time">6 PM – 10 PM</div>
+      </a>
+      <a href="https://maps.app.goo.gl/m2UdKeTqX8uoQHM86" class="button">
+        <div class="event-title">Barat</div>
+        <div class="event-time">6 PM – 10 PM</div>
+      </a>
+
+    <footer>© 2025 All Rights Reserved</footer>
+  </div>
+
+</body>
+</html>
